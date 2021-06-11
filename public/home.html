@@ -38,9 +38,14 @@
         // Show loading animation
         $(this).hide();
         $('.loader').show();
-        console.log(document.getElementById("imageUpload").files);
-        console.log(form_data);
-        // Make prediction by calling api /predict
+        // console.log(document.getElementById("imageUpload").files[0]);
+        // form_data.append('name',`${document.getElementById("imageUpload").files[0].name}`) ;
+        // console.log($('#upload-file')[0]);
+        // fetch("http://localhost:3000/upload", {
+        //     method: "POST",
+        //     body: form_data
+        // });
+        //Make prediction by calling api /predict
         $.ajax({
             type: 'POST',
             url: '/upload',
@@ -120,12 +125,12 @@
     </style> 
    
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#" id="title">Image Uploading Demo</a>
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Help</button>
         </div>
-    </nav>
+    </nav> -->
     <div class="container">
         <div id="content" style="margin-top:2em">
             <h2>Image Uploading</h2>
@@ -137,7 +142,6 @@
                     </label>
                     <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
                 </form>
-
                 <div class="image-section" style="display:none;">
                     <div class="img-preview">
                         <div id="imagePreview">
@@ -159,4 +163,3 @@
     </div>
 </body>
 
-</html>
