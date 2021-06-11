@@ -23,7 +23,7 @@ const accessKeyId = "AKIAQATXWFP7O4HSGPX5"
 const secretAccessKey = "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"
 
 const s3 = new S3({
-  region,
+  //region,
   accessKeyId,
   secretAccessKey
 });
