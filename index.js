@@ -1,42 +1,40 @@
 // call all the required packages
 const express = require('express')
 const multer = require('multer');
-const AWS  = require('aws-sdk');
+const AWS = require('aws-sdk');
 const S3 = require('aws-sdk/clients/s3');
+require('dotenv').config();
 const port = 3000;
 const app = express();
 const fs = require('fs');
-const  storage = multer.diskStorage({ // storage
+const storage = multer.diskStorage({ // storage
   destination: function (req, file, cb) {
     cb(null, __dirname + '/public/images')
   },
   filename: function (req, file, cb) {
     const mimetype = file.mimetype.split('/')[1];
-    cb(null, file.fieldname + '-' + Date.now()+'.' + mimetype)
+    cb(null, file.fieldname + '-' + Date.now() + '.' + mimetype)
   }
 })
 var upload = multer({ storage: storage });
 
-const bucketName = "duong-aws"
-const region = "ap-southeast-1a"
-const accessKeyId = "AKIAQATXWFP7O4HSGPX5"
-const secretAccessKey = "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"
-
+const bucketName = process.env.BUCKET
+const accessKeyId = process.env.ACCESS_KEY_ID
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
 const s3 = new S3({
-  //region,
   accessKeyId,
   secretAccessKey
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('public/home.html' , { root : __dirname})
+  res.sendFile('public/home.html', { root: __dirname })
 })
 app.post('/upload', upload.single('file'), (req, res, next) => {
   const file = req.file;
   console.log("FILE", req.file);
   const filepath = fs.createReadStream(file.path);
   const params = {
-    Bucket: bucketName, 
+    Bucket: bucketName,
     Key: `${file.filename}`,
     Body: filepath
   };
