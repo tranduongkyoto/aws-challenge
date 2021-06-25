@@ -9,7 +9,7 @@ This project upload image from laptop and push to S3 using AWS service: EC2 and 
 
 
 
-### Run application seperately 
+### Run application
 
 Create an .env file with following content in aws-challenge folder:
 
