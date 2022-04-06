@@ -2,12 +2,9 @@
 
 Tech stack: Express, AWS EC2, AWS S3
 
-
 ###
  
-This project upload image from your device and push to S3 using AWS service: EC2 and S3
-
-
+This project upload image from your device and push to AWS S3.
 
 ### Run application
 
